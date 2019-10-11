@@ -1,4 +1,7 @@
-# ML-Project-2
+# Project 2 - NLP Classification
+
+## COMP551 - Applied Machine Learning
+
 ### Code for kaggle competition on reddit comment classification
 
 _NOTE: The codes found in this repo are from authory of either Luiz Resende Silva, Matheus Faria or Nikhil._
