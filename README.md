@@ -17,7 +17,7 @@ The different functions in the code submitted were implemented using a Python 3 
 pip install yellowbrick
 ```
 
-* [Mlxtend](http://rasbt.github.io/mlxtend/): used to [import](https://pypi.org/project/mlxtend/) the class StackingCVClassifier
+* [Mlxtend](http://rasbt.github.io/mlxtend/): used to [import](https://pypi.org/project/mlxtend/) the class ```StackingCVClassifier```
 ```bash
 pip install mlxtend
 ```
