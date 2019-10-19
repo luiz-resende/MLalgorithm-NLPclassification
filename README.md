@@ -15,8 +15,15 @@ updated to their latest version. Two modules require prior installation in order
 the class StackingCVClassifier (an ensemble meta-classifier model used to generate prediction through base models from Scikit-learn
 library). To avoid unexpected errors and to enable the code to work properly, these two libraries' installation are required:
 
-- [Yellowbrick](https://pypi.org/project/yellowbrick/): used for classification report evaluation
+- [Yellowbrick](https://pypi.org/project/yellowbrick/): used for classification report evaluation data visualization
+```bash
+pip install yellowbrick
+```
 
+- [Mlxtend](http://rasbt.github.io/mlxtend/): used to [import](https://pypi.org/project/mlxtend/) the class StackingCVClassifier
+```bash
+pip install mlxtend
+```
 
 _NOTE: The codes found in this repo are from authory of either Luiz Resende Silva, Matheus Faria or Nikhil._
 
