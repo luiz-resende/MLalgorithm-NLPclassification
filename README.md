@@ -41,7 +41,11 @@ The project's code was divided into 5 different .py files to have a cleaner envi
 
 ## USAGE
 
+* *Project_02_Functions.py*:
+ * **Functions in this file do not need to be modified**
+
 * *Project_02_TrainingModels.py*: 
+
 
 * *Project_02_Testing_HeldOut.py*: 
   * First 64 lines all the necessary modules are explicited and imported
@@ -53,10 +57,12 @@ The project's code was divided into 5 different .py files to have a cleaner envi
   * Lines 161-174: a list constaining a selection of the classifiers chosen to be used in the CustomStackVoting model
   * Lines 176-204: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
   * Lines 209-211: three flag variables are created (SINGLE, ALL and META) to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
-  * Lines 219-220: fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags SINGLE=True and ALL=True
+  * Lines 219-233:
+    * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags SINGLE=True and ALL=True
   * Lines 223-225: fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=True and ALL=False.
   * Lines 227-229: fits and generates predictions for the CustomStackVoting model in the Classification_Model function, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=False
-  * Lines 231-233: fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=True
+  * Lines 231-: fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=True
+  * Lines 240-243: the predictions 
   
   
   
