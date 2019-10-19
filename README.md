@@ -33,6 +33,11 @@ The project's code was divided into 5 different .py files to have a cleaner envi
 2. *Project_02_UserDefinedClasses.py*: contains the Multinomial Bernoulli Naive-Bayes classification model implemented from scratch and the CustomStackVoting classification model created based on Scikit-learn's [VotingClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.VotingClassifier.html) to overcome some problems encountered when trying to run the later with models which do not contain the predict_proba method. The user does not need to run any of the scripts on it, since other files import its functions. It **must be included in the same directory as the other code files**.
 
 3. *Project_02_GridSearchModelsParameters.py*: this file contains the code for a grid search set-up used by the author to test and tune the parameters for the different models used. It imports scikit-learn methods and also functions from the file described in item 1 above.
+```python
+import Project_02_Functions as pf
+from Project_02_UserDefinedClasses import CustomStackVoting
+from Project_02_UserDefinedClasses import MultiClassBernoulliNB
+```
 *OBS.: the file is not needed to reproduce the results for the predictions submitted - it was used only for the assessment of parameters by the authors - therefore, the file was not included in the submission **code.zip**, it is being mentioned here only for clarification about how the parameters were selected.*
 
 4. *Project_02_TrainingModels.py*: this file contains the code set-up used to assess individual models more thoroughly, where the training dataset for the text classification is imported, splitted in two sets and the models are trained and tested to assess their individual performance. It imports scikit-learn methods and also functions from the files described in items 1 and 2 above. *Use explained below*.
@@ -97,7 +102,7 @@ The files described above were submitted containing the correct parameters in or
 ## FUTURE UPDATES
 
 The Multinomial Bernoulli Naive-Bayes classification model implemented from scratch was prove to take a longer time when generating the predictions. A possible future upgrade would be the implementation of the parallelization of some internal functions iterating through very sparce matrices and replacing some loops by vector operations.
-Another intended update is the implementation of furhter functions in the CustomVoringClassifier to enable the use of meta classification by feeding the predicitions of ```k``` base estimators to a meta-estimator that would be trained upon this data and learn to make predictions based on the performance of the ```k``` base estimators, as in StackingCVClassifier.
+Another intended update is the implementation of furhter functions in the CustomStackVoting to enable the use of meta classification by feeding the predicitions of ```k``` base estimators to a meta-estimator that would be trained upon this data and learn to make predictions based on the performance of the ```k``` base estimators, as in StackingCVClassifier.
 Such updates were not implement in the classes submitted due to time restrictions.
 
 ## AUTHORS AND ACKNOWLEDGMENTS
@@ -105,4 +110,4 @@ Such updates were not implement in the classes submitted due to time restriction
 ### AUTHORSHIP
 All the scripts presented in the files *Project_02_Functions.py*, *Project_02_GridSearchModelsParameters.py*, *Project_02_TrainingModels.py* and *Project_02_Testing_HeldOut.py* (with the exception of the imported modules) were coded/implementd by *Luiz Resende Silva* himself. The scripts presented in *Project_02_UserDefinedClasses.py* file were coded by both *Luiz Resende Silva* and *Matheus Faria themselves*.
 
-All classification, preprocessing and utilities modules were imported from either Scikit-Learn, NLTK and Mlxtend, with exception of the Multinomial Bernoulli Naive-Bayes classification model implemented from scratch, following the project's instructions. All other modules were general libraries used in handling data and support implemented functions.
+All classification, preprocessing and utilities modules were imported from either Scikit-Learn, NLTK and Mlxtend, with exception of the MultiClassBernoulliNB classification model implemented from scratch, following the project's instructions. All other modules were general libraries used in handling data and support implemented functions.
