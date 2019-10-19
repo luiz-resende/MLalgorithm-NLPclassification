@@ -42,27 +42,48 @@ The project's code was divided into 5 different .py files to have a cleaner envi
 ## USAGE
 
 * *Project_02_Functions.py*:
- * **Functions in this file do not need to be modified**
+ * ***Functions in this file do not need to be modified***
+
+* *Project_02_UserDefinedClasses.py*:
+ * ***Functions and classes in this file do not need to be modified***
 
 * *Project_02_TrainingModels.py*: 
-
+  * First 40 lines all the necessary modules are explicited and imported
+  * Lines 45-47: the name of the file containing the dataset is passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file name assumes the file is in the same directory. If not the case, the correct path for the training file must be passed to the variable **FileTrain***
+  * Lines 53-61: the data is analysed regarding its size and histograms describing this data are plotted.
+  * Lines 64-67: the preprocessing step is done, where the comments are converted to lowercase, stop words are removed and lemmatization is performed
+  * Lines 74-75: the training data is divided in two sets in order to have a set of "unseen" data to assess the accuracy of the model(s) tested. Split is done using Scikit-learn's train_test_split method.
+  * Lines 88-91: the vectorizaiton of the comments is done and features are extracted from the training_split dataset. The test_split dataset is transformed to the vocabulary extracted from the training_split set.
+  * Lines 94-96: the number of features is reduced by using Feature Selection methods.  *OBS.: tests showed that reducing number of features did not help improve accuracy, therefore these lines were commented out to disable this action of occuring; to enable it, the user just need to uncomment these lines*.
+  * Lines 104-141: all the available tested models are instantiated and their parameters are set
+  * Lines 145-155: a list containing the models instantiated above is created to be fed to the different ensemble models or to sequentially be used in a loop or called by index.
+  * Lines 161-172: a list constaining a selection of the classifiers chosen to be used in the VotingClassifier model is created and the model is instantiated with its required parameters
+  * Lines 177-187: a list constaining a selection of the classifiers chosen to be used in the CustomStackVoting model
+  * Lines 192-216: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
+  * Lines 222-224: three flag variables are created (SINGLE, ALL and META) to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
+  * Lines 230-248:
+    * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags SINGLE=True and ALL=True
+    * fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=True and ALL=False.
+    * fits and generates predictions for the CustomStackVoting model in the Classification_Model function, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=False
+    * fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=True
+  * Lines 254: a confusion matrix is generated to assess performance of the model trained.
 
 * *Project_02_Testing_HeldOut.py*: 
-  * First 64 lines all the necessary modules are explicited and imported
-  * Lines 65-72: the names of the files containing the datasets are passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file names assume the files are in the same directory. If not the case, the correct path for the training and testing files must be passed to the variables **FileTrain** and **FileTest**, respectively*
-  * Lines 74-83: the preprocessing step is done in both datasets, where the comments are converted to lowercase, stop words are removed and lemmatization is performed
-  * Lines 91-103: the vectorizaiton of the comments is done and features are extracted from the training dataset and the test dataset is transformed
-  * Lines 105-143: all the available tested models are instantiated and their parameters are set
-  * Lines 145-159: a list containing the models instantiated above is created to be fed to ensemble models
-  * Lines 161-174: a list constaining a selection of the classifiers chosen to be used in the CustomStackVoting model
-  * Lines 176-204: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
-  * Lines 209-211: three flag variables are created (SINGLE, ALL and META) to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
-  * Lines 219-233:
+  * First 35 lines all the necessary modules are explicited and imported
+  * Lines 39-43: the names of the files containing the datasets are passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file names assume the files are in the same directory. If not the case, the correct path for the training and testing files must be passed to the variables **FileTrain** and **FileTest**, respectively*
+  * Lines 49-64: the preprocessing step is done in both datasets, where the comments are converted to lowercase, stop words are removed and lemmatization is performed
+  * Lines 72-75: the vectorizaiton of the comments is done and features are extracted from the training dataset and the test dataset is transformed
+  * Lines 83-118: all the available tested models are instantiated and their parameters are set
+  * Lines 123-134: a list containing the models instantiated above is created to be fed to ensemble models
+  * Lines 139-149: a list constaining a selection of the classifiers chosen to be used in the CustomStackVoting model
+  * Lines 154-178: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
+  * Lines 184-186: three flag variables are created (SINGLE, ALL and META) to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
+  * Lines 192-208:
     * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags SINGLE=True and ALL=True
-  * Lines 223-225: fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=True and ALL=False.
-  * Lines 227-229: fits and generates predictions for the CustomStackVoting model in the Classification_Model function, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=False
-  * Lines 231-: fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=True
-  * Lines 240-243: the predictions 
+    * fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=True and ALL=False.
+    * fits and generates predictions for the CustomStackVoting model in the Classification_Model function, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=False
+    * fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=True
+  * Lines 215-218: the predictions generated by any of the four options of fit/predict above are saved in a Pandas DataFrame structure and a .csv file containing the respective IDs for the predictions and the predictions is generated in order to be submitted to the kaggle competition.
   
   
   
