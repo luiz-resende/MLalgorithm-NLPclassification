@@ -6,34 +6,40 @@ README file to help the understanding, interpretation and use of the python code
 
 ### Code for kaggle competition on reddit comment classification
 
-The entire project was implement using several different python libraries, from data importing and handling to the models used to proceed
-with the classification task at hand.
+The entire project was implement using several different python libraries, from data importing and handling to the models used to proceed with the classification task at hand.
 
 ## INSTALLATION
 
-The different functions in the code submitted were implemented using a Python 3 base IDE and having all the libraries and dependencies 
-updated to their latest version. Two modules require prior installation in order to enable one evaluation function and another to enable
-the class StackingCVClassifier (an ensemble meta-classifier model used to generate prediction through base models from Scikit-learn
-library). To avoid unexpected errors and to enable the code to work properly, these two libraries' installation are required:
+The different functions in the code submitted were implemented using a Python 3 base IDE and having all the libraries and dependencies updated to their latest version. Two modules require prior installation in order to enable one evaluation function and another to enable the class StackingCVClassifier (an ensemble meta-classifier model used to generate prediction through base models from Scikit-learn library). To avoid unexpected errors and to enable the code to work properly, these two libraries' installation are required:
 
-- [Yellowbrick](https://pypi.org/project/yellowbrick/): used for classification report evaluation data visualization
+* [Yellowbrick](https://pypi.org/project/yellowbrick/): used for classification report evaluation data visualization
 ```bash
 pip install yellowbrick
 ```
 
-- [Mlxtend](http://rasbt.github.io/mlxtend/): used to [import](https://pypi.org/project/mlxtend/) the class StackingCVClassifier
+* [Mlxtend](http://rasbt.github.io/mlxtend/): used to [import](https://pypi.org/project/mlxtend/) the class StackingCVClassifier
 ```bash
 pip install mlxtend
 ```
 
-No other module was installed and all the requered class/methods are duly called in the code, releasing the user from the obligation of
-importing them.
+No other module was installed and all the requered class/methods are duly called in the code, releasing the user from the obligation of importing them.
 
 ## CODE FILES
 
 The project's code was divided into 5 different .py files to have a cleaner environment and facilitated their use. The files are:
 
-* Item 1 Project_02_Functions.py
+1. *Project_02_Functions.py*: contains the functions designed to be used thoughout the code. Includes dataset importing functions, plotting, calling fit/predict methods from Scikit-learn, text preprocessing, extraction and selection etc. All the functions on it are duly commented and their input parameters are clearly explained (and their names are intuitive). The user does not need to run any of the scripts on it, since other files import its functions. It **must be included in the same directory as the other code files**.
+
+2. *Project_02_UserDefinedClasses.py*: contains the Multinomial Bernoulli Naive-Bayes classification model implemented from scratch and the CustomStackVoting classification model created based on Scikit-learn's [VotingClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.VotingClassifier.html) to overcome some problems encountered when trying to run the later with models which do not contain the predict_proba method. The user does not need to run any of the scripts on it, since other files import its functions. It **must be included in the same directory as the other code files**.
+
+3. *Project_02_GridSearchModelsParameters.py*: this file contains the code for a grid search set-up used by the author to test and tune the parameters for the different models used. It imports scikit-learn methods and also functions from the file described in item 1 above.
+*OBS.: the file is not needed to reproduce the results for the predictions submitted - it was used only for the assessment of parameters by the authors - therefore, the file was not included in the submission **code.zip**, it is being mentioned here only for clarification about how the parameters were selected.*
+
+4. *Project_02_TrainingModels.py*: this file contains the code set-up used to assess individual models more thoroughly, where the training dataset for the text classification is imported, splitted in two sets and the models are trained and tested to assess their individual performance. It imports scikit-learn methods and also functions from the files described in items 1 and 2 above. *Use explained below*.
+
+5. *Project_02_Testing_HeldOut.py*: this file contains the code set-up used to actually train the model(s) selected in the entire training dataset and to generate predictions for the testing dataset for the kaggle competition. Both train and test datasets are imported, the models are trained in the entire first and tested in the second. It imports scikit-learn methods and also functions from the files described in items 1 and 2 above. *Use explained below*.
+
+## 
 
 *NOTE: The codes found in this repo are from authory of either Luiz Resende Silva, Matheus Faria or Nikhil.*
 
