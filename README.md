@@ -42,10 +42,10 @@ The project's code was divided into 5 different .py files to have a cleaner envi
 ## USAGE
 
 * *Project_02_Functions.py*:
- * ***Functions in this file do not need to be modified***
+  * ***Functions in this file do not need to be modified***
 
 * *Project_02_UserDefinedClasses.py*:
- * ***Functions and classes in this file do not need to be modified***
+  * ***Functions and classes in this file do not need to be modified***
 
 * *Project_02_TrainingModels.py*: 
   * First 40 lines all the necessary modules are explicited and imported
