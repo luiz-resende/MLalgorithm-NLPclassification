@@ -49,7 +49,7 @@ The project's code was divided into 5 different .py files to have a cleaner envi
 
 * *Project_02_TrainingModels.py*: 
   * First 40 lines all the necessary modules are explicited and imported
-  * Lines 45-47: the name of the file containing the dataset is passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file name assumes the file is in the same directory. If not the case, the correct path for the training file must be passed to the variable ```python FileTrain``` *
+  * Lines 45-47: the name of the file containing the dataset is passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file name assumes the file is in the same directory. If not the case, the correct path for the training file must be passed to the variable ```FileTrain``` *
   * Lines 53-61: the data is analysed regarding its size and histograms describing this data are plotted.
   * Lines 64-67: the preprocessing step is done, where the comments are converted to lowercase, stop words are removed and lemmatization is performed
   * Lines 74-75: the training data is divided in two sets in order to have a set of "unseen" data to assess the accuracy of the model(s) tested. Split is done using Scikit-learn's train_test_split method.
@@ -67,15 +67,15 @@ The project's code was divided into 5 different .py files to have a cleaner envi
   META = True #or False
   ```
   * Lines 230-248:
-    * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags SINGLE=True and ALL=True
-    * fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=True and ALL=False.
-    * fits and generates predictions for the CustomStackVoting model in the Classification_Model function, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=False
-    * fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=True
+    * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags ```SINGLE=True``` and ```ALL=True```
+    * fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags ```SINGLE=True``` and ```ALL=False```.
+    * fits and generates predictions for the CustomStackVoting model in the Classification_Model function, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags ```SINGLE=False``` and ```META=False```
+    * fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags ```SINGLE=False``` and ```META=True```
   * Lines 254: a confusion matrix is generated to assess performance of the model trained.
 
 * *Project_02_Testing_HeldOut.py*: 
   * First 35 lines all the necessary modules are explicited and imported
-  * Lines 39-43: the names of the files containing the datasets are passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file names assume the files are in the same directory. If not the case, the correct path for the training and testing files must be passed to the variables **FileTrain** and **FileTest**, respectively*
+  * Lines 39-43: the names of the files containing the datasets are passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file names assume the files are in the same directory. If not the case, the correct path for the training and testing files must be passed to the variables ```FileTrain``` and ```FileTest```, respectively*
   * Lines 49-64: the preprocessing step is done in both datasets, where the comments are converted to lowercase, stop words are removed and lemmatization is performed
   * Lines 72-75: the vectorizaiton of the comments is done and features are extracted from the training dataset and the test dataset is transformed
   * Lines 83-118: all the available tested models are instantiated and their parameters are set
@@ -84,12 +84,22 @@ The project's code was divided into 5 different .py files to have a cleaner envi
   * Lines 154-178: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
   * Lines 184-186: three flag variables are created (SINGLE, ALL and META) to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
   * Lines 192-208:
-    * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags SINGLE=True and ALL=True
-    * fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=True and ALL=False.
-    * fits and generates predictions for the CustomStackVoting model in the Classification_Model function, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=False
-    * fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=False and META=True
+    * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags ```SINGLE=True``` and ```ALL=True```
+    * fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags ```SINGLE=True``` and ```ALL=False```.
+    * fits and generates predictions for the CustomStackVoting model in the Classification_Model function, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags ```SINGLE=False``` and ```META=False```
+    * fits and generates predictions for the StackingCVClassifier model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags ```SINGLE=False``` and ```META=True```
   * Lines 215-218: the predictions generated by any of the four options of fit/predict above are saved in a Pandas DataFrame structure and a .csv file containing the respective IDs for the predictions and the predictions is generated in order to be submitted to the kaggle competition.
-  
+
+### RESULTS REPRODUCTION AND FEEDBACK
+
+The files described above were submitted containing the correct parameters in order to enable the results' reproduction. However, the user is invited to read the comments and descriptions of the functions in *Project_02_Functions.py* and in the classification models and see if better results can be achieved. If so, one can reach the authors through ```luiz.resendesilva@mail.mcgill.ca```.
+
+## FUTURE UPDATES
+
+The Multinomial Bernoulli Naive-Bayes classification model implemented from scratch was prove to take a longer time when generating the predictions. A possible future upgrade would be the implementation of the parallelization of some internal functions iterating through very sparce matrices and replacing some loops by vector operations.
+Another intended update is the implementation of furhter functions in the CustomVoringClassifier to enable the use of meta classification by feeding the predicitions of ```k``` base estimators to a meta-estimator that would be trained upon this data and learn to make predictions based on the performance of the ```k``` base estimators, as in StackingCVClassifier.
+Such updates were not implement in the classes submitted due to time restrictions.
+
 ## AUTHORS AND ACKNOWLEDGMENTS
 
 ### AUTHORSHIP
