@@ -92,7 +92,7 @@ The project's code was divided into 5 different .py files to have a cleaner envi
 
 ### RESULTS REPRODUCTION AND FEEDBACK
 
-The files described above were submitted containing the correct parameters in order to enable the results' reproduction. However, the user is invited to read the comments and descriptions of the functions in *Project_02_Functions.py* and in the classification models and see if better results can be achieved. If so, one can reach the authors through ```luiz.resendesilva@mail.mcgill.ca```.
+The files described above were submitted containing the correct parameters in order to enable the results' reproduction, i.e. *by only running the scripts the results generated would be the ones submitted*. However, the user is invited to read the comments and descriptions of the functions in *Project_02_Functions.py* and in the classification models and see if better results can be achieved. If so, one can reach the authors through ```luiz.resendesilva@mail.mcgill.ca```.
 
 ## FUTURE UPDATES
 
