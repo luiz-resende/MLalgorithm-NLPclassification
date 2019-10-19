@@ -44,6 +44,10 @@ The project's code was divided into 5 different .py files to have a cleaner envi
 * *Project_02_TrainingModels.py*: 
 
 * *Project_02_Testing_HeldOut.py*: 
+  * First 64 lines all the necessary modules are explicited and imported
+  * Lines 65-72 the names of the files containing the datasets are passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file names assume the files are in the same directory. If not the case, the correct path for the training and testing files must be passed to the variables **FileTrain** and **FileTest**, respectively*
+  * Lines 74-83 the preprocessing step is done in both datasets, 
+  
 
 *NOTE: The codes found in this repo are from authory of either Luiz Resende Silva, Matheus Faria or Nikhil.*
 
