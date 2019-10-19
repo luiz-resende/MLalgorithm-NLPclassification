@@ -60,7 +60,11 @@ The project's code was divided into 5 different .py files to have a cleaner envi
   * Lines 161-172: a list constaining a selection of the classifiers chosen to be used in the VotingClassifier model is created and the model is instantiated with its required parameters
   * Lines 177-187: a list constaining a selection of the classifiers chosen to be used in the CustomStackVoting model
   * Lines 192-216: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
-  * Lines 222-224: three flag variables are created (SINGLE, ALL and META) to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
+  * Lines 222-224: three flag variables are created to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
+  ```python
+  SINGLE = True #or False
+  ALL = True #or False
+  META = True #or False
   * Lines 230-248:
     * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags SINGLE=True and ALL=True
     * fits and generates predictions for a single individual model, returning a vector of size (n_samples,1) containig the predictions. To run this line, flags SINGLE=True and ALL=False.
