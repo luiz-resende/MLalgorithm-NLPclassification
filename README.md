@@ -123,7 +123,7 @@ MetaClass = [("Stacking Meta-Classifier", StackingCVClassifier(classifiers=ListM
                                                                use_features_in_secondary=False, store_train_meta_features=False, 
                                                                use_clones=True, n_jobs=-1))]
 ```
-**OBS.:** other models were tested, but this meta-classifier, to the knowledge of the author, has restrictions about which models can be fed to it. A ```Nonetype error``` is thown every time a base model it cannot handle it passed to it, e.g. this ```error``` was noticed when trying to pass on ExtraTrees classifier, SVC Classifier and SGD Classifier.
+**OBS.:** other models were tested, but this meta-classifier, to the knowledge of the author, has restrictions about which models can be fed to it. A ```Nonetype error``` is thown every time a base model it cannot handle it passed to it, e.g. this ```error``` was noticed when trying to pass on ExtraTrees classifier, LinearSVC Classifier and SGDClassifier.
 
 *Note:* The user is invited to read the comments and descriptions of the functions in *Project_02_Functions.py* and in the classification models and see if better results can be achieved. If so, one can reach the authors through ```luiz.resendesilva@mail.mcgill.ca```.
 
