@@ -100,31 +100,32 @@ The files described above were submitted containing the correct parameters in or
 ListModelMetaClassifier = [MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True) #0
                     ,BernoulliNB(alpha=0.01, class_prior=None, fit_prior=True) #1
                     ,RandomForestClassifier(n_estimators=2250, bootstrap=True, class_weight=None, criterion='gini',
-                                                             max_depth=None, max_features='auto', max_leaf_nodes=None,
-                                                             min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=2,
-                                                             min_samples_split=2, min_weight_fraction_leaf=0.0, n_jobs=-1, oob_score=False,
-                                                             random_state=None, verbose=1, warm_start=False) #2
+                                            max_depth=None, max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0,       
+                                            min_impurity_split=None, min_samples_leaf=2, min_samples_split=2, 
+                                            min_weight_fraction_leaf=0.0, n_jobs=-1, oob_score=False, random_state=None,
+                                            verbose=1, warm_start=False) #2
                     ,GradientBoostingClassifier(loss='deviance', learning_rate=0.1, n_estimators=250, subsample=1.0,
-                                                                     criterion='friedman_mse', min_samples_split=2, min_samples_leaf=2,
-                                                                     min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0,
-                                                                     min_impurity_split=None, init=None, random_state=None,
-                                                                     max_features=None, verbose=1, max_leaf_nodes=None, warm_start=False,
-                                                                     presort='auto', validation_fraction=0.1, n_iter_no_change=None,
-                                                                     tol=0.0001) #3
+                                                criterion='friedman_mse', min_samples_split=2, min_samples_leaf=2, 
+                                                min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0,
+                                                min_impurity_split=None, init=None, random_state=None, max_features=None, verbose=1,
+                                                max_leaf_nodes=None, warm_start=False, presort='auto', validation_fraction=0.1,
+                                                n_iter_no_change=None, tol=0.0001) #3
                     ,AdaBoostClassifier(base_estimator=kSVC, n_estimators=5, learning_rate=1.0, algorithm='SAMME', random_state=None) #4
                    ]
 
-Meta_Estimator = LogisticRegression(penalty='elasticnet', dual=False, tol=0.0001, C=10, fit_intercept=True, intercept_scaling=1, class_weight=None,
-                                    random_state=None, solver='saga', max_iter=1500, multi_class='auto', verbose=1, warm_start=False, n_jobs=-1,
-                                    l1_ratio=0.75)
+Meta_Estimator = LogisticRegression(penalty='elasticnet', dual=False, tol=0.0001, C=10, fit_intercept=True, intercept_scaling=1,
+                                    class_weight=None, random_state=None, solver='saga', max_iter=1500, multi_class='auto', verbose=1,
+                                    warm_start=False, n_jobs=-1, l1_ratio=0.75)
 
-MetaClass = [("Stacking Meta-Classifier", StackingCVClassifier(classifiers=ListModelMetaClassifier, meta_classifier=Meta_Estimator,
-                                                               use_probas=True, drop_last_proba=False, cv=2, shuffle=False, random_state=None,
-                                                               stratify=True, verbose=1, use_features_in_secondary=False,
-                                                               store_train_meta_features=False, use_clones=True, n_jobs=-1))]
+MetaClass = [("Stacking Meta-Classifier", StackingCVClassifier(classifiers=ListModelMetaClassifier, meta_classifier=Meta_Estimator, 
+                                                               use_probas=True, drop_last_proba=False, cv=2, shuffle=False, 
+                                                               random_state=None, stratify=True, verbose=1,
+                                                               use_features_in_secondary=False, store_train_meta_features=False, 
+                                                               use_clones=True, n_jobs=-1))]
 ```
+**OBS.:** other models were tested, but this meta-classifier, to the knowledge of the author, has restrictions about which models can be fed to it. A ```Nonetype error``` is thown every time a base model it cannot handle it passed to it, e.g. this ```error``` was noticed when trying to pass on ExtraTrees classifier, SVC Classifier and SGD Classifier.
 
-However, the user is invited to read the comments and descriptions of the functions in *Project_02_Functions.py* and in the classification models and see if better results can be achieved. If so, one can reach the authors through ```luiz.resendesilva@mail.mcgill.ca```.
+*Note:* The user is invited to read the comments and descriptions of the functions in *Project_02_Functions.py* and in the classification models and see if better results can be achieved. If so, one can reach the authors through ```luiz.resendesilva@mail.mcgill.ca```.
 
 ## FUTURE UPDATES
 
