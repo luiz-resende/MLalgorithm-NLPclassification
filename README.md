@@ -52,7 +52,7 @@ from Project_02_UserDefinedClasses import MultiClassBernoulliNB
 
 * *Project_02_TrainingModels.py*: 
   * First 40 lines all the necessary modules are explicited and imported
-  * Lines 45-47: the name of the file containing the dataset is passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file name assumes the file is in the same directory. If not the case, the correct path for the training file must be passed to the variable ```FileTrain``` *
+  * Lines 45-47: the name of the file containing the dataset is passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file name assumes the file is in the same directory. If not the case, the correct path for the training file must be passed to the variable* ```FileTrain```
   * Lines 53-61: the data is analysed regarding its size and histograms describing this data are plotted.
   * Lines 64-67: the preprocessing step is done, where the comments are converted to lowercase, stop words are removed and lemmatization is performed
   * Lines 74-75: the training data is divided in two sets in order to have a set of "unseen" data to assess the accuracy of the model(s) tested. Split is done using Scikit-learn's train_test_split method.
