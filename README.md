@@ -39,7 +39,11 @@ The project's code was divided into 5 different .py files to have a cleaner envi
 
 5. *Project_02_Testing_HeldOut.py*: this file contains the code set-up used to actually train the model(s) selected in the entire training dataset and to generate predictions for the testing dataset for the kaggle competition. Both train and test datasets are imported, the models are trained in the entire first and tested in the second. It imports scikit-learn methods and also functions from the files described in items 1 and 2 above. *Use explained below*.
 
-## 
+## USAGE
+
+* *Project_02_TrainingModels.py*: 
+
+* *Project_02_Testing_HeldOut.py*: 
 
 *NOTE: The codes found in this repo are from authory of either Luiz Resende Silva, Matheus Faria or Nikhil.*
 
