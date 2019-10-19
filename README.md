@@ -95,7 +95,36 @@ from Project_02_UserDefinedClasses import MultiClassBernoulliNB
 
 ### RESULTS REPRODUCTION AND FEEDBACK
 
-The files described above were submitted containing the correct parameters in order to enable the results' reproduction, i.e. *by only running the scripts the results generated would be the ones submitted*. However, the user is invited to read the comments and descriptions of the functions in *Project_02_Functions.py* and in the classification models and see if better results can be achieved. If so, one can reach the authors through ```luiz.resendesilva@mail.mcgill.ca```.
+The files described above were submitted containing the correct parameters in order to enable the results' reproduction for both the last training made and the prediction on the test set , i.e. *by only running the scripts the results generated would be the ones submitted*. The model used in the kaggle submission was the StackingCVClassifier ran using the parameters below:
+```python
+ListModelMetaClassifier = [MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True) #0
+                    ,BernoulliNB(alpha=0.01, class_prior=None, fit_prior=True) #1
+                    ,RandomForestClassifier(n_estimators=2250, bootstrap=True, class_weight=None, criterion='gini',
+                                                             max_depth=None, max_features='auto', max_leaf_nodes=None,
+                                                             min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=2,
+                                                             min_samples_split=2, min_weight_fraction_leaf=0.0, n_jobs=-1, oob_score=False,
+                                                             random_state=None, verbose=1, warm_start=False) #2
+                    ,GradientBoostingClassifier(loss='deviance', learning_rate=0.1, n_estimators=250, subsample=1.0,
+                                                                     criterion='friedman_mse', min_samples_split=2, min_samples_leaf=2,
+                                                                     min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0,
+                                                                     min_impurity_split=None, init=None, random_state=None,
+                                                                     max_features=None, verbose=1, max_leaf_nodes=None, warm_start=False,
+                                                                     presort='auto', validation_fraction=0.1, n_iter_no_change=None,
+                                                                     tol=0.0001) #3
+                    ,AdaBoostClassifier(base_estimator=kSVC, n_estimators=5, learning_rate=1.0, algorithm='SAMME', random_state=None) #4
+                   ]
+
+Meta_Estimator = LogisticRegression(penalty='elasticnet', dual=False, tol=0.0001, C=10, fit_intercept=True, intercept_scaling=1, class_weight=None,
+                                    random_state=None, solver='saga', max_iter=1500, multi_class='auto', verbose=1, warm_start=False, n_jobs=-1,
+                                    l1_ratio=0.75)
+
+MetaClass = [("Stacking Meta-Classifier", StackingCVClassifier(classifiers=ListModelMetaClassifier, meta_classifier=Meta_Estimator,
+                                                               use_probas=True, drop_last_proba=False, cv=2, shuffle=False, random_state=None,
+                                                               stratify=True, verbose=1, use_features_in_secondary=False,
+                                                               store_train_meta_features=False, use_clones=True, n_jobs=-1))]
+```
+
+However, the user is invited to read the comments and descriptions of the functions in *Project_02_Functions.py* and in the classification models and see if better results can be achieved. If so, one can reach the authors through ```luiz.resendesilva@mail.mcgill.ca```.
 
 ## FUTURE UPDATES
 
