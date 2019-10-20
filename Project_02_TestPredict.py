@@ -153,13 +153,13 @@ EnsembleCustom = [("Ensemble Custom Voting Classifier", CustomVoting)]
 #######################################################################
 ListModelMetaClassifier = [MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True) #0
                     ,BernoulliNB(alpha=0.01, class_prior=None, fit_prior=True) #1
-                    ,RandomForestClassifier(n_estimators=2500, bootstrap=True, class_weight=None, criterion='gini', max_depth=None,
+                    ,RandomForestClassifier(n_estimators=3000, bootstrap=True, class_weight=None, criterion='gini', max_depth=None,
                           max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=2,
                           min_samples_split=2, min_weight_fraction_leaf=0.0, n_jobs=-1, oob_score=False, random_state=None, verbose=0, warm_start=False) #2
                     ,ExtraTreesClassifier(n_estimators=1500, criterion='gini', max_depth=None, min_samples_split=2, min_samples_leaf=1,
                          min_weight_fraction_leaf=0.0, max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0,
                          min_impurity_split=None, bootstrap=True, oob_score=False, n_jobs=-1, random_state=None, verbose=0, warm_start=False, class_weight=None) #
-                    ,GradientBoostingClassifier(loss='deviance', learning_rate=0.1, n_estimators=250, subsample=1.0,
+                    ,GradientBoostingClassifier(loss='deviance', learning_rate=0.1, n_estimators=300, subsample=1.0,
                                                 criterion='friedman_mse', min_samples_split=2, min_samples_leaf=2, 
                                                 min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0,
                                                 min_impurity_split=None, init=None, random_state=None, max_features=None,
