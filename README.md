@@ -78,7 +78,7 @@ from Project_02_UserDefinedClasses import MultiClassBernoulliNB
 
 * *Project_02_Testing_HeldOut.py*: 
   * First 35 lines all the necessary modules are explicited and imported
-  * Lines 39-43: the names of the files containing the datasets are passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file names assume the files are in the same directory. If not the case, the correct path for the training and testing files must be passed to the variables ```FileTrain``` and ```FileTest```, respectively*
+  * Lines 39-43: the names of the files containing the datasets are passed and data is imported and copied to a Pandas DataFrame data structure. *OBS.: file names assume the files are in the same directory. If not the case, the correct path for the training and testing files must be passed to the variables* ```FileTrain``` *and* ```FileTest```*, respectively*
   * Lines 49-64: the preprocessing step is done in both datasets, where the comments are converted to lowercase, stop words are removed and lemmatization is performed
   * Lines 72-75: the vectorizaiton of the comments is done and features are extracted from the training dataset and the test dataset is transformed
   * Lines 83-118: all the available tested models are instantiated and their parameters are set
