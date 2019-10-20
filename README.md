@@ -58,11 +58,11 @@ from Project_02_UserDefinedClasses import MultiClassBernoulliNB
   * Lines 74-75: the training data is divided in two sets in order to have a set of "unseen" data to assess the accuracy of the model(s) tested. Split is done using Scikit-learn's train_test_split method.
   * Lines 88-91: the vectorizaiton of the comments is done and features are extracted from the training_split dataset. The test_split dataset is transformed to the vocabulary extracted from the training_split set.
   * Lines 94-96: the number of features is reduced by using Feature Selection methods.  *OBS.: tests showed that reducing number of features did not help improve accuracy, therefore these lines were commented out to disable this action of occuring; to enable it, the user just need to uncomment these lines*.
-  * Lines 104-141: all the available tested models are instantiated and their parameters are set
+  * Lines 104-140: all the available tested models are instantiated and their parameters are set
   * Lines 145-155: a list containing the models instantiated above is created to be fed to the different ensemble models or to sequentially be used in a loop or called by index.
   * Lines 161-172: a list constaining a selection of the classifiers chosen to be used in the VotingClassifier model is created and the model is instantiated with its required parameters
   * Lines 177-187: a list constaining a selection of the classifiers chosen to be used in the CustomStackVoting model
-  * Lines 192-216: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
+  * Lines 192-218: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
   * Lines 222-224: three flag variables are created to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
   ```python
   SINGLE = True #or False
@@ -84,7 +84,7 @@ from Project_02_UserDefinedClasses import MultiClassBernoulliNB
   * Lines 83-118: all the available tested models are instantiated and their parameters are set
   * Lines 123-134: a list containing the models instantiated above is created to be fed to ensemble models
   * Lines 139-149: a list constaining a selection of the classifiers chosen to be used in the CustomStackVoting model
-  * Lines 154-178: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
+  * Lines 154-180: a list with the classification models and their respective parameters for the StackingCVClassifier is created, the meta-classifier with its parameters for this model is selected and the ensemble meta-classifier method is instantiated with this list of base models, meta-classifier and needed parameters.
   * Lines 184-186: three flag variables are created (SINGLE, ALL and META) to generalize the fitting and prediction steps and enable the user to choose what to run without having to comment/uncomment lines.
   * Lines 192-208:
     * fits and generates predictions for a list of individual models in the Classification_Model function using parallelization to speed-up process, returning a matrix of size (n_samples,n_models) containig the predictions for the different models. To run this line, flags ```SINGLE=True``` and ```ALL=True```
@@ -99,32 +99,34 @@ The files described above were submitted containing the correct parameters in or
 ```python
 ListModelMetaClassifier = [MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True) #0
                     ,BernoulliNB(alpha=0.01, class_prior=None, fit_prior=True) #1
-                    ,RandomForestClassifier(n_estimators=2250, bootstrap=True, class_weight=None, criterion='gini',
-                                            max_depth=None, max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0,       
-                                            min_impurity_split=None, min_samples_leaf=2, min_samples_split=2, 
-                                            min_weight_fraction_leaf=0.0, n_jobs=-1, oob_score=False, random_state=None,
-                                            verbose=1, warm_start=False) #2
+                    ,RandomForestClassifier(n_estimators=2500, bootstrap=True, class_weight=None, criterion='gini', max_depth=None,
+                          max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None,
+                          min_samples_leaf=2, min_samples_split=2, min_weight_fraction_leaf=0.0, n_jobs=-1, oob_score=False,
+                          random_state=None, verbose=0, warm_start=False) #2
+                    ,ExtraTreesClassifier(n_estimators=1500, criterion='gini', max_depth=None, min_samples_split=2, min_samples_leaf=1,
+                         min_weight_fraction_leaf=0.0, max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0,
+                         min_impurity_split=None, bootstrap=True, oob_score=False, n_jobs=-1, random_state=None, verbose=0,
+                         warm_start=False, class_weight=None) #3
                     ,GradientBoostingClassifier(loss='deviance', learning_rate=0.1, n_estimators=250, subsample=1.0,
                                                 criterion='friedman_mse', min_samples_split=2, min_samples_leaf=2, 
                                                 min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0,
-                                                min_impurity_split=None, init=None, random_state=None, max_features=None, verbose=1,
-                                                max_leaf_nodes=None, warm_start=False, presort='auto', validation_fraction=0.1,
-                                                n_iter_no_change=None, tol=0.0001) #3
-                    ,AdaBoostClassifier(base_estimator=kSVC, n_estimators=5, learning_rate=1.0, algorithm='SAMME', random_state=None) #4
+                                                min_impurity_split=None, init=None, random_state=None, max_features=None,
+                                                verbose=0, max_leaf_nodes=None, warm_start=False, presort='auto',
+                                                validation_fraction=0.1, n_iter_no_change=None, tol=0.0001) #4
+                    ,AdaBoostClassifier(base_estimator=kSVC, n_estimators=10, learning_rate=1.0, algorithm='SAMME', random_state=None)#5
                    ]
 
 Meta_Estimator = LogisticRegression(penalty='elasticnet', dual=False, tol=0.0001, C=10, fit_intercept=True, intercept_scaling=1,
-                                    class_weight=None, random_state=None, solver='saga', max_iter=1500, multi_class='auto', verbose=1,
-                                    warm_start=False, n_jobs=-1, l1_ratio=0.75)
-
-MetaClass = [("Stacking Meta-Classifier", StackingCVClassifier(classifiers=ListModelMetaClassifier, meta_classifier=Meta_Estimator, 
-                                                               use_probas=True, drop_last_proba=False, cv=2, shuffle=False, 
-                                                               random_state=None, stratify=True, verbose=1,
-                                                               use_features_in_secondary=False, store_train_meta_features=False, 
-                                                               use_clones=True, n_jobs=-1))]
+                              class_weight=None, random_state=None, solver='saga', max_iter=1500, multi_class='auto', verbose=0,   
+                              warm_start=False, n_jobs=-1,l1_ratio=0.75)
+                              
+MetaClass = StackingCVClassifier(classifiers=ListModelMetaClassifier, meta_classifier=Meta_Estimator, use_probas=True,
+                                 drop_last_proba=False, cv=3, shuffle=False, random_state=None, stratify=True, verbose=2,
+                                 use_features_in_secondary=False,  store_train_meta_features=False, use_clones=True, n_jobs=-1)
 ```
 **OBS.1:** other models were tested, but this meta-classifier, to the knowledge of the author, has restrictions about which models can be fed to it. Since it uses the ```predict_proba``` method, models which do not present this method cannot be used. It seems to be a glitch in the class, since the author tested different models using the parameter ```use_probas=False```, however, even with this parameters set to ```False```, it throws an error.
-**OBS.2:** the base models fed to the StackingCVClassifier must have the parameter ```verbose=0```, or else an exception will throw 
+
+**OBS.2:** the base models fed to the StackingCVClassifier must have the parameter ```verbose=0```, or else the script will throw an exception 
 ```python
  AttributeError: 'NoneType' object has no attribute 'write'
 ```
