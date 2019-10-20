@@ -83,7 +83,7 @@ print("Dimensionality of vectors:",vec_training.shape, vec_testing.shape)
 LogReg = LogisticRegression(penalty='elasticnet', dual=False, tol=0.0001, C=10, fit_intercept=True, intercept_scaling=1, class_weight=None,
                             random_state=None, solver='saga', max_iter=1500, multi_class='auto', verbose=2, warm_start=False, n_jobs=-1, l1_ratio=0.75)
 
-kSVC = SVC(kernel='poly', C=10, degree=3, gamma='auto', probability=True, tol=0.001, max_iter=100, decision_function_shape='ovr', cache_size=500, verbose=1,
+kSVC = SVC(kernel='poly', C=30, degree=3, gamma='auto', probability=True, tol=0.001, max_iter=500, decision_function_shape='ovr', cache_size=500, verbose=0,
            random_state=None)
 
 lSVC = LinearSVC(C=10, class_weight=None, dual=True, fit_intercept=True, intercept_scaling=1, loss='squared_hinge', max_iter=1000,
@@ -153,37 +153,37 @@ EnsembleCustom = [("Ensemble Custom Voting Classifier", CustomVoting)]
 #######################################################################
 ListModelMetaClassifier = [MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True) #0
                     ,BernoulliNB(alpha=0.01, class_prior=None, fit_prior=True) #1
-                    ,RandomForestClassifier(n_estimators=2250, bootstrap=True, class_weight=None, criterion='gini',
-                                                             max_depth=None, max_features='auto', max_leaf_nodes=None,
-                                                             min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=2,
-                                                             min_samples_split=2, min_weight_fraction_leaf=0.0, n_jobs=-1, oob_score=False,
-                                                             random_state=None, verbose=1, warm_start=False) #2
+                    ,RandomForestClassifier(n_estimators=2500, bootstrap=True, class_weight=None, criterion='gini', max_depth=None,
+                          max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=2,
+                          min_samples_split=2, min_weight_fraction_leaf=0.0, n_jobs=-1, oob_score=False, random_state=None, verbose=0, warm_start=False) #2
+                    ,ExtraTreesClassifier(n_estimators=1500, criterion='gini', max_depth=None, min_samples_split=2, min_samples_leaf=1,
+                         min_weight_fraction_leaf=0.0, max_features='auto', max_leaf_nodes=None, min_impurity_decrease=0.0,
+                         min_impurity_split=None, bootstrap=True, oob_score=False, n_jobs=-1, random_state=None, verbose=0, warm_start=False, class_weight=None) #
                     ,GradientBoostingClassifier(loss='deviance', learning_rate=0.1, n_estimators=250, subsample=1.0,
-                                                                     criterion='friedman_mse', min_samples_split=2, min_samples_leaf=2,
-                                                                     min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0,
-                                                                     min_impurity_split=None, init=None, random_state=None,
-                                                                     max_features=None, verbose=1, max_leaf_nodes=None, warm_start=False,
-                                                                     presort='auto', validation_fraction=0.1, n_iter_no_change=None,
-                                                                     tol=0.0001) #3
-                    ,AdaBoostClassifier(base_estimator=kSVC, n_estimators=5, learning_rate=1.0, algorithm='SAMME', random_state=None) #4
+                                                criterion='friedman_mse', min_samples_split=2, min_samples_leaf=2, 
+                                                min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0,
+                                                min_impurity_split=None, init=None, random_state=None, max_features=None,
+                                                verbose=0, max_leaf_nodes=None, warm_start=False, presort='auto',
+                                                validation_fraction=0.1, n_iter_no_change=None, tol=0.0001) #3
+                    ,AdaBoostClassifier(base_estimator=kSVC, n_estimators=10, learning_rate=1.0, algorithm='SAMME', random_state=None) #4
                    ]
 
+
 Meta_Estimator = LogisticRegression(penalty='elasticnet', dual=False, tol=0.0001, C=10, fit_intercept=True, intercept_scaling=1, class_weight=None,
-                                    random_state=None, solver='saga', max_iter=1500, multi_class='auto', verbose=1, warm_start=False, n_jobs=-1,
+                                    random_state=None, solver='saga', max_iter=1500, multi_class='auto', verbose=0, warm_start=False, n_jobs=-1,
                                     l1_ratio=0.75)
 
-MetaClass = [("Stacking Meta-Classifier", StackingCVClassifier(classifiers=ListModelMetaClassifier, meta_classifier=Meta_Estimator,
-                                                               use_probas=True, drop_last_proba=False, cv=2, shuffle=False, random_state=None,
-                                                               stratify=True, verbose=1, use_features_in_secondary=False,
-                                                               store_train_meta_features=False, use_clones=True, n_jobs=-1))]
+
+MetaClass = StackingCVClassifier(classifiers=ListModelMetaClassifier, meta_classifier=Meta_Estimator, use_probas=True, drop_last_proba=False, cv=3,
+                                 shuffle=False, random_state=None, stratify=True, verbose=2, use_features_in_secondary=False, 
+                                 store_train_meta_features=False, use_clones=True, n_jobs=-1)
 
 #####################################################################################################################################################
 """             FITTING THE MODEL AND MAKE PREDICTIONS - SET THE FLAGS BELOW TO true OR false DEPENDING ON THE SELECTED APPROACH              """
 #####################################################################################################################################################
-
 SINGLE = False
 ALL = False
-META = False
+META = True
 
 print("START FITTING....")
 print("="*100)
@@ -203,9 +203,8 @@ elif(META==False):
                                     Classifier=EnsembleCustom[0][1], target_testing=None, ModelName=EnsembleCustom[0][0],
                                     accur=False, grph=False, setClass=clas, show=False)
 else:
-    Clf = MetaClass[0][1]
-    Clf.fit(vec_training, out_train)
-    HeldOutDataPredictions = Clf.predict(vec_testing)
+    MetaClass.fit(vec_training, out_train)
+    HeldOutDataPredictions = MetaClass.predict(vec_testing)
 
 runingTime = timeit.default_timer() - tStart #Stopping clock and getting time spent
 print("Fitting and predictions done in %0.4fs."%runingTime)
