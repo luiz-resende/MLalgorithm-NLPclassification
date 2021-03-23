@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@author: Luiz Resende Silva - ID 260852243
+@author: Luiz Resende Silva
 """
 ##################################################################
 '''                 GENERAL LIBRARIES                       '''
