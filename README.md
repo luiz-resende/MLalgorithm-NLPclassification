@@ -1,5 +1,5 @@
 # COMP551 APPLIED MACHINE LEARNING - PROJECT 2
-## GROUP 04 - Luiz Resende Silva, Matheus Faria and Nikhil Krishna
+## AUTHORS: Resende Silva, Luiz, & Furtado e Faria, Matheus
 ### NLP Classification
 
 README file to help the understanding, interpretation and use of the python code implemented for Project 2 and submitted with this file
@@ -143,6 +143,9 @@ Such updates were not implement in the classes submitted due to time restriction
 ## AUTHORS AND ACKNOWLEDGMENTS
 
 ### AUTHORSHIP
-All the scripts presented in the files *Project_02_Functions.py*, *Project_02_GridSearchModelsParameters.py*, *Project_02_TrainingModels.py* and *Project_02_Testing_HeldOut.py* (with the exception of the imported modules) were coded/implementd by *Luiz Resende Silva* himself. The scripts presented in *Project_02_UserDefinedClasses.py* file were coded by both *Luiz Resende Silva* and *Matheus Faria themselves*.
+All the scripts presented in the files *Project_02_Functions.py*, *Project_02_GridSearchModelsParameters.py*, *Project_02_TrainingModels.py* and *Project_02_Testing_HeldOut.py* (with the exception of the imported modules) were coded/implementd by Luiz Resende Silva. The scripts presented in *Project_02_UserDefinedClasses.py* file were coded by both authors.
 
-All classification, preprocessing and utilities modules were imported from either Scikit-Learn, NLTK and Mlxtend, with exception of the MultiClassBernoulliNB classification model implemented from scratch, following the project's instructions. All other modules were general libraries used in handling data and support implemented functions.
+All classification, preprocessing and utilities modules were imported from either Scikit-Learn, NLTK and Mlxtend, with exception of the MultiClassBernoulliNB classification model implemented from scratch. All other modules were general libraries used in handling data and support implemented functions.
+
+### LICENSE
+All files made available in this repository follow the licensing guidelines defined in the file **LICENSE.md**.
