@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-@author CustomStackVoting: Luiz Resende Silva - ID 260852243
-@author MultiClassBernoulliNB: Matheus Faria - ID 260853422
+@author CustomStackVoting: Luiz Resende Silva
+@author MultiClassBernoulliNB: Matheus Faria
 """
 import pandas as pd
 import numpy as np
