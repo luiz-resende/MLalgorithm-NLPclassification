@@ -1,12 +1,11 @@
-# COMP551 APPLIED MACHINE LEARNING - PROJECT 2
-## AUTHORS: Resende Silva, Luiz, & Furtado e Faria, Matheus
-### NLP Classification
+# Machine Learning Algorithms for NLP Classification
 
-README file to help the understanding, interpretation and use of the python code implemented for Project 2 and submitted with this file
+### **Authors**: *Resende Silva, Luiz, & Furtado e Faria, Matheus*
+### **Date**: *October 2019*
+### **Subject**: *COMP551 Applied Machine Learning - Project 02*
 
-### Code for kaggle competition on reddit comment classification
-
-The entire project was implement using several different python libraries, from data importing and handling to the models used to proceed with the classification task at hand.
+### **Overview**
+README file to help the understanding, interpretation and use of the python code implemented for NLP classification project. The entire project was implement using several different python libraries, from data importing and handling to the models used to proceed with the classification task at hand.
 
 ## INSTALLATION
 
